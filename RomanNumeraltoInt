@@ -1,0 +1,57 @@
+class Solution {
+    public int romanToInt(String s) {
+        // numeral has to be between 1 and 15 characters long
+        int sum = 0;
+            
+        if(s.length() == 0){
+            System.out.println("You did not enter anything the sum is 0 anyway!");
+                return sum;
+        } else if(s.length() > 15){
+            System.out.println("You entered in too much please keep your numerals between 1 and 15 numerals long\n sum is 0 because there was too much too compute.");
+            return sum;
+        }
+        
+        char[] numeralChars = new char[s.length() + 1];
+        
+        for(int i = 0; i < s.length(); i++){
+            numeralChars[i] = s.charAt(i);
+        }
+        
+        System.out.println(numeralChars);
+        
+        for(int i = 0; i < numeralChars.length; i++){
+            if(numeralChars[i] == 'I'){
+                if(numeralChars[i + 1] == 'V' | numeralChars[i + 1] == 'X'){
+                    sum -= 1;
+                } else {
+                    sum += 1;
+                }
+            } else if (numeralChars[i] == 'V') {
+                sum += 5;
+            } else if (numeralChars[i] == 'X'){
+                if(numeralChars[i + 1] == 'L' | numeralChars[i + 1] == 'C'){
+                    sum -= 10;
+                } else {
+                    sum += 10;
+                }
+            } else if (numeralChars[i] == 'L'){
+                sum += 50;
+            } else if (numeralChars[i] == 'C'){
+                if(numeralChars[i + 1] == 'D' | numeralChars[i + 1] == 'M'){
+                    sum -= 100;
+                } else {
+                    sum += 100;
+                }
+            } else if (numeralChars[i] == 'D'){
+                sum += 500;
+            } else if (numeralChars[i] == 'M'){
+                sum += 1000;
+            } else{
+                sum += 0;
+            }
+        }
+        
+        return sum;
+        
+    }
+}
